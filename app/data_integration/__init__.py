@@ -22,6 +22,7 @@ def root_pipeline():
     import app.data_integration.pipelines.pypi
     import app.data_integration.pipelines.utils
     import app.data_integration.pipelines.python_projects
+    import app.data_integration.pipelines.biquery_github
 
     pipeline = Pipeline(
         id='mara_example_project',
@@ -32,6 +33,9 @@ def root_pipeline():
     pipeline.add(app.data_integration.pipelines.github.pipeline, upstreams=['utils'])
     pipeline.add(app.data_integration.pipelines.python_projects.pipeline,
                  upstreams=['pypi', 'github'])
+
+    pipeline.add(app.data_integration.pipelines.biquery_github.pipeline)
+
     return pipeline
 
 
